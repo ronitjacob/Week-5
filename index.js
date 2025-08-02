@@ -1,10 +1,39 @@
-async function getRecentPosts() {
-  console.log("before");
-const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-const data = await response.json();
-console.log(data);
-console.log("after");
-document.getElementById("posts").innerHTML = data.body
-}
+const express = require("express");
 
-getRecentPosts();
+const app = express();
+
+app.get("/add/:a/:b", function(req, res) {
+    const a = parseInt(req.params.a);
+    const b = parseInt(req.params.b);
+
+    res.json({
+        ans: a + b
+    })
+});
+
+app.get("/multiply/:a/:b", function(req, res) {
+    const a = parseInt(req.params.a);
+    const b = parseInt(req.params.b);
+    res.json({
+        ans: a * b
+    })
+});
+
+app.get("/divide/:a/:b", function(req, res) {
+    const a = parseInt (req.params.a);
+    const b = parseInt (req.params.b);
+    res.json({
+        ans: a / b
+    })
+
+});
+
+app.get("/subtract/:a/:b", function(req, res) {
+    const a = parseInt(req.params.a);
+    const b = parseInt(req.params.b);
+    res.json({
+        ans: a - b
+    })
+});
+
+app.listen(3000);
